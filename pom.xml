@@ -16,6 +16,8 @@
         <module>_4_dependency-injection</module>
         <module>_0_recap</module>
         <module>_5_spring-beans</module>
+        <module>_6_spring-hello-service</module>
+        <module>_7_spring-aop-example</module>
     </modules>
 
 
