@@ -1,5 +1,7 @@
 package ro.sda.spring._6_spring_di.beans;
 
+import org.springframework.context.annotation.Bean;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 

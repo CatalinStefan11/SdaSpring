@@ -1,9 +1,7 @@
 package ro.sda.spring._1_aop.aspects;
 
 
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 
 
 /*
@@ -51,4 +49,13 @@ public class MathServiceAspect {
         System.out.println("After called");
     }
 
+    @AfterThrowing("execution(* ro.sda.spring._1_aop.services.MathService.add(..))")
+    public void afterTrowing(){
+        System.out.println("After throwing an exception");
+    }
+
+    @AfterReturning("execution(* ro.sda.spring._1_aop.services.MathService.*(..))")
+    public void afterReturning() {
+        System.out.println("After returning");
+    }
 }

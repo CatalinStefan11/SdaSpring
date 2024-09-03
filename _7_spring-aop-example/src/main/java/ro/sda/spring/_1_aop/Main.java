@@ -12,10 +12,20 @@ public class Main {
 
             MathService mathService = c.getBean(MathService.class);
 
+            try {
+                mathService.add(10, 2);
+            } catch (RuntimeException ex) {
+                // ignored
+            }
+
             mathService.add(4, 5);
             mathService.subtract(11, 4);
-            mathService.divide(15, 5);
 
+            try {
+                mathService.divide(12, 3);
+            } catch (Exception ex) {
+                // ignored
+            }
 
         }
 
