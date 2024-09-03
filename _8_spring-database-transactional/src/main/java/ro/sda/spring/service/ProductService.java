@@ -32,4 +32,8 @@ public class ProductService {
     public void addProductsWithoutTx(Product p1, Product p2) {
         productRepository.addProductsWithoutTransaction(p1.getName(), p2.getName());
     }
+
+    public void addProductsWithTransactional(Product p1, Product p2) {
+        productRepository.addProductsWithTx(p1.getName(), p2.getName());
+    }
 }

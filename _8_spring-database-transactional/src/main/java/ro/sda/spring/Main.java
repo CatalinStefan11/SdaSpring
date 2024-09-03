@@ -41,13 +41,27 @@ public class Main {
 
             try {
                 productService.addProductsWithoutTx(new Product("wallet"),  new Product("iphone"));
-            } catch (Exception ignored) {}
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
 
 
             productList = productService.getAllProducts();
 
             productList.forEach((Product p) -> System.out.println(p));
 
+            System.out.println("----------------------------------");
+
+
+            try {
+                productService.addProductsWithTransactional(new Product("phone"), new Product("headset"));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            productList = productService.getAllProducts();
+
+            productList.forEach((Product p) -> System.out.println(p));
         }
     }
 }

@@ -3,6 +3,7 @@ package ro.sda.spring.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ro.sda.spring.mapper.ProductRowMapper;
 import ro.sda.spring.model.Product;
 
@@ -44,6 +45,16 @@ public class ProductRepository {
         String sql = "INSERT INTO product(name) VALUES (?)";
         jdbcTemplate.update(sql, nameP1);
         if (nameP2.contains("iphone")) {
+            throw new RuntimeException("Exception during the addition of the second product to DB");
+        }
+        jdbcTemplate.update(sql, nameP2);
+    }
+
+    @Transactional
+    public void addProductsWithTx(String nameP1, String nameP2) {
+        String sql = "INSERT INTO product(name) VALUES (?)";
+        jdbcTemplate.update(sql, nameP1);
+        if (nameP2.contains("headset")) {
             throw new RuntimeException("Exception during the addition of the second product to DB");
         }
         jdbcTemplate.update(sql, nameP2);

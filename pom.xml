@@ -19,6 +19,8 @@
         <module>_6_spring-hello-service</module>
         <module>_7_spring-aop-example</module>
         <module>_8_spring-database-transactional</module>
+        <module>_9_spring-boot-first-project</module>
+        <module>_10_spring-boot-learning-app</module>
     </modules>
 
 
