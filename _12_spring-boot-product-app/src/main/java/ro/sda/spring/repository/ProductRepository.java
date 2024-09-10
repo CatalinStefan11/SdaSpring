@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+
+// the bean is named productRepository in the context (Spring IoC container)
 @Slf4j
 @Repository
 public class ProductRepository {
@@ -19,6 +21,7 @@ public class ProductRepository {
 
     public ProductRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        log.info("ProductRepository JdbcTemplate hashcode in hex {}", jdbcTemplate);
         log.info("ProductRepository constructor called!");
     }
 
@@ -56,7 +59,7 @@ public class ProductRepository {
         List<Product> productList = jdbcTemplate.query(
                 sql,
                 (rs, rowNum) -> new Product(rs.getInt("id"), rs.getString("name"),
-                rs.getString("description"), rs.getDouble("price"), rs.getBoolean("in_stock")),
+                        rs.getString("description"), rs.getDouble("price"), rs.getBoolean("in_stock")),
                 id);
 
         if (!productList.isEmpty()) {
@@ -71,6 +74,12 @@ public class ProductRepository {
         String sql = "DELETE FROM product WHERE ID = ?";
         jdbcTemplate.update(sql, id);
         log.info("Product with id {} deleted", id);
+    }
+
+    public void updateById(int id, String name, String description, double price, boolean inStock) {
+        String sql = "UPDATE product SET name = ?, description = ?, price = ?, in_stock = ? WHERE ID = ?";
+        jdbcTemplate.update(sql, name, description, price, inStock, id);
+        log.info("Product with id {} updated!", id);
     }
 
     static class ProductMapper implements RowMapper<Product> {

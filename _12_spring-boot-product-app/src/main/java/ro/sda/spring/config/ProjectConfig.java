@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 @Slf4j
 @Configuration
 public class ProjectConfig {
-
     @Value("${spring.datasource.url}")
     private String datasourceUrl;
 
@@ -24,6 +23,10 @@ public class ProjectConfig {
 
     @Value("${spring.datasource.password}")
     private String dbPass;
+
+    public ProjectConfig() {
+        log.info("ProjectConfig constructor called!");
+    }
 
     @Bean
     public DataSource dataSource() {
@@ -43,8 +46,11 @@ public class ProjectConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
+    public JdbcTemplate primaryJdbc() {
+        log.info("DATASOURCE 1 " + dataSource());
+        var templ = new JdbcTemplate(dataSource());
+        log.info("primaryJdbc " + templ);
+        return templ;
     }
 
 }

@@ -23,6 +23,7 @@
         <module>_10_spring-boot-learning-app</module>
         <module>_11_spring-boot-rest-app</module>
         <module>_12_spring-boot-product-app</module>
+        <module>_13_spring-boot-jpa-app</module>
     </modules>
 
 

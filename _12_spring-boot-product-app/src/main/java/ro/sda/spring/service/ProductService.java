@@ -41,4 +41,9 @@ public class ProductService {
         log.info("Deleting product with id {}", id);
         productRepository.deleteById(id);
     }
+
+    public void updateById(int id, Product p){
+        log.info("Updating product with id {}", id);
+        productRepository.updateById(id, p.getName(), p.getDescription(), p.getPrice(), p.isInStock());
+    }
 }

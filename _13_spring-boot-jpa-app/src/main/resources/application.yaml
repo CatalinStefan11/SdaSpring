@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:mydb
+    username: user
+    password: pass
+
+logging:
+  level:
+    ro.sda.spring: DEBUG # -> this means all the logs from the package ro.sda.spring are on debug mode (the rest are on default mode which is INFO)
+#    root: DEBUG -> this means that all the logs from all the packages will be on DEBUG mode (level)
+#    org.springframework.web: DEBUG -> this means all the logs from the package org.springframework.web are on debug mode (the rest are on default mode which is INFO)

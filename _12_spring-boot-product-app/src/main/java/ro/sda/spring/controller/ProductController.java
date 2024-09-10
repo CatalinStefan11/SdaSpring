@@ -21,6 +21,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public void addProduct(@RequestBody Product p) {
         productService.addProduct(p);
     }
@@ -36,12 +37,18 @@ public class ProductController {
         if (p != null) {
             return ResponseEntity.ok(p);
         }
-        return new ResponseEntity<>(HttpEntity.EMPTY, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(null,null, HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/product/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable("id") int id) {
         productService.deleteById(id);
+    }
+
+    @PutMapping("/product/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void putById(@PathVariable("id") int id, @RequestBody Product body) {
+        productService.updateById(id, body);
     }
 }
