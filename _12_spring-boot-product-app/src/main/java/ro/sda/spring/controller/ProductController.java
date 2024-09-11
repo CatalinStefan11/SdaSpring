@@ -51,4 +51,6 @@ public class ProductController {
     public void putById(@PathVariable("id") int id, @RequestBody Product body) {
         productService.updateById(id, body);
     }
+
+
 }

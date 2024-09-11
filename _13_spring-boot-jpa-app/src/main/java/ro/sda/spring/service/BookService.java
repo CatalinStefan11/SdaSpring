@@ -1,5 +1,6 @@
 package ro.sda.spring.service;
 
+import jakarta.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ro.sda.spring.exception.BookNotFoundException;
@@ -41,8 +42,43 @@ public class BookService {
         log.debug("Book with id {} was not found in the database", id);
         throw new BookNotFoundException("Book with id " + id + " not found in the database!");
     }
-}
 
+    public List<Book> getBooksByPriceGraterOrEqualAndGenderContains(int price, @Nullable String gender) {
+        log.debug("Querying for books with price greater or equal with {} and gender contains {}", price, gender);
+
+        List<Book> books;
+
+        if (gender != null && price > 0) {
+            books = bookRepository.findByPriceGreaterThanEqualAndGenderContains(price, gender);
+        } else if (price > 0) {
+            books = bookRepository.findByPriceGreaterThanEqual(price);
+        } else {
+            books = bookRepository.findByGenderContains(gender);
+        }
+
+        log.debug("{} books found with price greater or equal than {} and with gender containing {}", books.size(), price, gender);
+        return books;
+    }
+
+    public void deleteById(int id) {
+        if (!bookRepository.existsById(id)) {
+            throw new BookNotFoundException("Book with id " + id + " was not found! Nothing to delete!");
+        }
+        log.debug("Deleting book with id {}", id);
+        bookRepository.deleteById(id);
+        log.debug("Book with id {} deleted", id);
+    }
+
+    public void updateById(int id, Book toUpdate) {
+        if(!bookRepository.existsById(id)) {
+            throw new BookNotFoundException("Book with id " + id + " was not found! Nothing to update!");
+        }
+        log.debug("Updating book with id {}", id);
+        toUpdate.setId(id);
+        bookRepository.save(toUpdate);
+        log.debug("Book with id {} updated", id);
+    }
+}
 
 /*
     Log levels:
