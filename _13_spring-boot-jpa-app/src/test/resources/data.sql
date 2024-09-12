@@ -1,0 +1,1 @@
+INSERT INTO book (title, author, price, gender) VALUES ('Harap Alb', 'Ion Creanga', 20, 'Fairy-tale');

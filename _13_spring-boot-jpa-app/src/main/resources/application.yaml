@@ -10,6 +10,17 @@ spring:
     url: jdbc:h2:mem:mydb
     username: user
     password: pass
+#   driverClassName: com.mysql.cj.jdbc.Driver
+#   url: jdbc:mysql://localhost:3306/book_app
+#   username: root
+#   password: pass
+
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update # we need this property in order for the tables to be created automatically
+
 
 logging:
   level:

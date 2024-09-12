@@ -22,15 +22,15 @@ public class Book {
     private int id;
 
     // when a constraint is not met then an exception of type will be thrown MethodArgumentNotValidException
-    @NotBlank(message = "Name is required")
+    @NotBlank(message = "Title most not be empty")
     private String title;
 
-    @NotBlank(message = "Author is required")
+    @NotBlank(message = "Author most not be empty")
     private String author;
 
     @Min(value = 1, message = "Price must be greater than 0")
     private int price;
 
-    @NotBlank(message = "Gender is required")
+    @NotBlank(message = "Gender most not be empty")
     private String gender;
 }
